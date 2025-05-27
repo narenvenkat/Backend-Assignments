@@ -2,11 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Möbius Strip Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Möbius Strip Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #f5f7fa;
+      color: #333;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+    model-viewer {
+      width: 80%;
+      height: 500px;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <h1>Möbius Strip</h1>
-  <model-viewer src="model_strip.obj" alt="Mobius strip" auto-rotate camera-controls></model-viewer>
+
+  <h1>Möbius Strip Generator 🌀</h1>
+  <p>
+    This is a procedurally generated Möbius strip created with Python. You can rotate, zoom, and inspect the 3D model below. The surface area and edge length are computed numerically, and the model is exported in OBJ format.
+  </p>
+
+  <model-viewer 
+    src="model_strip.obj" 
+    alt="3D model of a Möbius strip" 
+    auto-rotate 
+    camera-controls 
+    ar 
+    exposure="0.9"
+    shadow-intensity="1"
+    style="background: #fff;">
+  </model-viewer>
+
+  <footer>
+    Created with 🧠 by Naren Venkat Kukkala• <a href="https://github.com/narenvenkat/Backend-Assignments">View Code on GitHub</a>
+  </footer>
+
 </body>
 </html>
