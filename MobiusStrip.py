@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
 
 class MobiusStrip:
     def __init__(self, R, w, n):
@@ -35,9 +33,8 @@ class MobiusStrip:
         cross_z = Xu * Yv - Yu * Xv
         dA = np.sqrt(cross_x**2 + cross_y**2 + cross_z**2)
 
-        # Double integration using trapezoidal rule
-        area_v = np.trapezoid(dA, self.v, axis=0)
-        area = np.trapezoid(area_v, self.u)
+        area_v = np.trapz(dA, self.v, axis=0)
+        area = np.trapz(area_v, self.u)
         return area
 
     def compute_edge_length(self):
@@ -54,32 +51,38 @@ class MobiusStrip:
         )
         return length
 
-    def plot(self):
-        fig = plt.figure(figsize=(10, 6))
-        ax = fig.add_subplot(111, projection='3d')
-        ax.plot_surface(self.X, self.Y, self.Z, rstride=4, cstride=4,
-                        color='lightsteelblue', edgecolor='gray', alpha=0.9)
-        ax.set_title("Möbius Strip")
-        ax.set_xlabel("X")
-        ax.set_ylabel("Y")
-        ax.set_zlabel("Z")
-        plt.tight_layout()
-        plt.show()
+    def export_obj(self, filename="mobius_strip.obj"):
+        with open(filename, 'w') as f:
+            # Write vertices
+            for i in range(self.n):
+                for j in range(self.n):
+                    f.write(f"v {self.X[i][j]} {self.Y[i][j]} {self.Z[i][j]}\n")
+
+            # Write faces (simple quad mesh)
+            for i in range(self.n - 1):
+                for j in range(self.n - 1):
+                    idx = lambda a, b: a * self.n + b + 1
+                    v1 = idx(i, j)
+                    v2 = idx(i, j + 1)
+                    v3 = idx(i + 1, j + 1)
+                    v4 = idx(i + 1, j)
+                    f.write(f"f {v1} {v2} {v3} {v4}\n")
 
 
 if __name__ == "__main__":
     try:
-        R = float(input("Enter radius R (e.g., 1.0): "))
-        w = float(input("Enter strip width w (e.g., 0.4): "))
-        n = int(input("Enter resolution n (e.g., 300): "))
+        R = float(input())
+        w = float(input())
+        n = int(input())
 
         mobius = MobiusStrip(R, w, n)
         area = mobius.compute_surface_area()
         edge_length = mobius.compute_edge_length()
 
         print(f"\nSurface Area ≈ {area:.4f}")
-        print(f"Edge Length ≈ {edge_length:.4f}\n")
-        mobius.plot()
+        print(f"Edge Length ≈ {edge_length:.4f}")
+        mobius.export_obj("mobius_strip.obj")
+        print("Möbius strip exported as 'mobius_strip.obj'")
 
     except Exception as e:
         print(f"Error: {e}")
