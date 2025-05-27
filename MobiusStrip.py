@@ -12,8 +12,8 @@ class MobiusStrip:
 
     def _generate_mesh(self):
         U, V = self.U, self.V
-        X = (self.R + (V/2) * np.cos(U / 2)) * np.cos(U)
-        Y = (self.R + (V/2) * np.cos(U / 2)) * np.sin(U)
+        X = (self.R + V * np.cos(U / 2)) * np.cos(U)
+        Y = (self.R + V * np.cos(U / 2)) * np.sin(U)
         Z = V * np.sin(U / 2)
         return X, Y, Z
 
