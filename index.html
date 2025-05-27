@@ -3,37 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Möbius Strip Generator</title>
+  <title>3D Möbius Strip</title>
   <style>
     body {
       margin: 0;
-      padding: 2rem;
       background-color: #121212;
-      color: #e0e0e0;
+      color: #f0f0f0;
       font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
       text-align: center;
+      padding: 2rem 1rem 1rem;
     }
     h1 {
       font-size: 2.5rem;
-      color: #ffffff;
+      margin-bottom: 0.5rem;
     }
     p {
       max-width: 600px;
-      margin: 0 auto 2rem;
+      margin: 0 auto;
       font-size: 1.1rem;
-      color: #cccccc;
+      color: #ccc;
     }
     model-viewer {
       width: 100%;
       max-width: 900px;
       height: 600px;
-      margin: 0 auto;
+      background-color: #1a1a1a;
       border-radius: 16px;
-      background-color: #1e1e1e;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      margin: 2rem;
     }
     footer {
-      margin-top: 2rem;
+      margin-top: auto;
+      padding: 1rem;
       font-size: 0.9rem;
       color: #777;
     }
@@ -41,7 +48,7 @@
       color: #80cbc4;
       text-decoration: none;
     }
-    a: hover {
+    a:hover {
       text-decoration: underline;
     }
   </style>
@@ -49,25 +56,25 @@
 </head>
 <body>
 
-  <h1>Möbius Strip Generator 🌀</h1>
-  <p>
-    Explore this 3D Möbius strip generated with Python. Use your mouse or touch to rotate and zoom the model.
-  </p>
+  <header>
+    <h1>Möbius Strip 3D Viewer 🌀</h1>
+    <p>Visualize a mathematically generated Möbius strip using WebGL and <code>&lt;model-viewer&gt;</code>.</p>
+  </header>
 
   <model-viewer 
-    src="model_strip.glb" 
-    alt="3D model of Möbius strip" 
-    auto-rotate 
-    camera-controls 
-    ar 
-    exposure="0.9"
+    src="mobius_strip.glb"
+    alt="3D Möbius Strip"
+    auto-rotate
+    camera-controls
+    ar
     shadow-intensity="1"
-    style="width: 100%; height: 500px; background: #121212; border-radius: 12px;">
+    exposure="1"
+    interaction-prompt="auto"
+    style="width: 100%; height: 600px;">
   </model-viewer>
 
-
   <footer>
-    Created by Naren Venkat Kukkala • <a href="https://github.com/narenvenkat/Backend-Assignments" target="_blank">View on GitHub</a>
+    Built with ❤️ by <a href="https://github.com/narenvenkat" target="_blank">narenvenkat</a>
   </footer>
 
 </body>
